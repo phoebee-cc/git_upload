@@ -70,13 +70,13 @@ update VILLAGE set §ø¨½¿ì¤½«Ç¦ì¸m = '«H¸q¨½«H¸q¸ô53«Ñ1¸¹' where §ø¨½§O¥N¸¹ = 'C0
 select distinct pb.ÁÒºÞ¤À§½, pb.¤À§½³sµ¸¹q¸Ü 
  from POLICE_BRANCH pb
  inner join SHELTER ss on ss.ÁÒºÞ¤À§½¥N½X = pb.ÁÒºÞ¤À§½¥N½X
- where ®e¤H¼Æ¶q >= 1000;
+ where ®e¤H¼Æ¶q >= '1000';
  
 --4-2
 select distinct pb.ÁÒºÞ¤À§½, pb.¤À§½³sµ¸¹q¸Ü, count(ss.ÁÒºÞ¤À§½¥N½X) as ÁÒºÞ¤À§½¼Æ¶q
  from POLICE_BRANCH pb
  inner join SHELTER ss on ss.ÁÒºÞ¤À§½¥N½X = pb.ÁÒºÞ¤À§½¥N½X
- where ®e¤H¼Æ¶q >= 1000
+ where ®e¤H¼Æ¶q >= '1000'
  group by pb.ÁÒºÞ¤À§½, pb.¤À§½³sµ¸¹q¸Ü;
  
 --4-3
@@ -84,7 +84,7 @@ select distinct pb.ÁÒºÞ¤À§½, pb.¤À§½³sµ¸¹q¸Ü, count(ss.ÁÒºÞ¤À§½¥N½X), ss.Á×Ãø³]¬
  from POLICE_BRANCH pb
  inner join SHELTER ss on ss.ÁÒºÞ¤À§½¥N½X = pb.ÁÒºÞ¤À§½¥N½X
  inner join SHELTER_TYPE st on st. ½s¸¹ = ss.Ãþ«¬
- where ®e¤H¼Æ¶q >= 1000
+ where ®e¤H¼Æ¶q >= '1000'
  group by pb.ÁÒºÞ¤À§½, pb.¤À§½³sµ¸¹q¸Ü, ss.Á×Ãø³]¬I¦a§}, st.Ãþ§O;
  
 --4-4
