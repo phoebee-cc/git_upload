@@ -57,23 +57,23 @@ public class MapCar {
 			carInManufacturer.add(map);
 		}
 		BigDecimal minPriceSum = BigDecimal.ZERO;
-		BigDecimal PriceSum = BigDecimal.ZERO;
+		BigDecimal priceSum = BigDecimal.ZERO;
 		BigDecimal minPriceTotal = BigDecimal.ZERO;
 		BigDecimal priceTotal = BigDecimal.ZERO;
 		for (Entry<String, List<Map<String, String>>> entry : carByManufacturer.entrySet()) {
 			String key = entry.getKey();
 			List<Map<String, String>> list = carByManufacturer.get(key);
 			minPriceSum = BigDecimal.ZERO;
-			PriceSum = BigDecimal.ZERO;
+			priceSum = BigDecimal.ZERO;
 			for (int i = 0; i < list.size(); i++) {
 				System.out.printf("%-15s %-15s %10s %10s\n", entry.getKey(), list.get(i).get("Type"),
 						list.get(i).get("Min.Price"), list.get(i).get("Price"));
 				minPriceSum = minPriceSum.add(new BigDecimal(list.get(i).get("Min.Price")));
-				PriceSum = PriceSum.add(new BigDecimal(list.get(i).get("Price")));
+				priceSum = priceSum.add(new BigDecimal(list.get(i).get("Price")));
 			}
 			minPriceTotal = minPriceTotal.add(minPriceSum);
-			priceTotal = priceTotal.add(PriceSum);
-			System.out.printf("%-15s %25s %10s\n", "小計", minPriceSum, PriceSum);
+			priceTotal = priceTotal.add(priceSum);
+			System.out.printf("%-15s %25s %10s\n", "小計", minPriceSum, priceSum);
 		}
 		System.out.printf("%-15s %25s %10s\n", "合計", minPriceTotal, priceTotal);
 
@@ -101,16 +101,3 @@ public class MapCar {
 	}
 
 }
-//		Map<String, Map<String, BigDecimal>> summaryMap = carMapList.stream().collect(Collectors.groupingBy(
-//				car -> car.get("Manufacturer"), Collectors.collectingAndThen(Collectors.toList(), carList -> {
-//					Map<String, BigDecimal> summary = new TreeMap<>();
-//					BigDecimal minPriceSum = carList.stream().map(car -> new BigDecimal(car.get("Min.Price")))
-//							.reduce(BigDecimal.ZERO, BigDecimal::add);
-//					BigDecimal priceSum = carList.stream().map(car -> new BigDecimal(car.get("Price")))
-//							.reduce(BigDecimal.ZERO, BigDecimal::add);
-//					summary.put("Min.Price.Sum", minPriceSum);
-//					for (int i = 0; i < carList.size(); i++) {
-//						System.out.printf("%10s %10s %10s %10s\n", carList.get(i).get("Manufacturer"),
-//								carList.get(i).get("Type"), carList.get(i).get("Min.Price"),
-//								carList.get(i).get("Price"));
-//					}
