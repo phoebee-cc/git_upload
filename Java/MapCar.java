@@ -21,7 +21,6 @@ public class MapCar {
 	public static void main(String[] args) {
 		String filePath = "C:\\Users\\Admin\\Downloads\\Java評量_第6題cars.csv";
 		List<Map<String, String>> carMapList = readCsvToList(filePath);
-		List<Map<String, Object>> result = new ArrayList<>();
 		Collections.sort(carMapList, new Comparator<Map<String, String>>() {
 			public int compare(final Map<String, String> o1, final Map<String, String> o2) {
 				return o2.get("Price").compareTo(o1.get("Price"));
