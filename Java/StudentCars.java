@@ -150,8 +150,6 @@ public class StudentCars {
 	}
 
 	private static void doUpdate() throws SQLException {
-		ResultSet rs = null;
-
 		try (Connection conn = DriverManager.getConnection(CONN_URL, "STUDENT", "student123456");) {
 			try {
 				conn.setAutoCommit(false);
