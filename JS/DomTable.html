@@ -33,6 +33,7 @@
             const type = document.getElementById('type');
             const minPrice = document.getElementById('minPrice');
             const price = document.getElementById('price');
+            const data = document.getElementById('data');
 
             document.getElementById('add').onclick = function () {
                 if (!manufacturer.value) {
@@ -43,6 +44,7 @@
                     addData(manufacturer.value, type.value, minPrice.value, price.value);
                 }
             }
+
             document.getElementById('clear').onclick = function () {
                 manufacturer.value = '';
                 type.value = '';
@@ -60,7 +62,6 @@
                     alert('請選擇要修改的資料');
                     return;
                 }
-
                 if (!manufacturer.value) {
                     alert('請填寫製造商');
                 } else if (!type.value) {
@@ -73,10 +74,9 @@
                     row.cells[5].innerHTML = price.value;
                 }
             }
+
             function addData(manufacturerData, typeData, minPriceData, priceData) {
-                const data = document.getElementById('data');
                 const newRow = data.insertRow(data.rows.length);
-                
                 const radio = newRow.insertCell(0);
                 radio.innerHTML = '<input type="radio" name="index">';
                 radio.querySelector('input[type="radio"]').onclick = function () {
@@ -100,14 +100,11 @@
             }
 
             function reTable(data) {
-                const table = document.getElementById('data');
-                for (let i = 1; i < table.rows.length; i++) {
-                    table.rows[i].cells[1].innerHTML = i;
+                for (let i = 1; i < data.rows.length; i++) {
+                    data.rows[i].cells[1].innerHTML = i;
                 }
             }
         }
-    
-
     </script>
 </head>
 
