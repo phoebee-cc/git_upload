@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        .table1 {
+            border-collapse: collapse;
+            width: 600px;
+            height: 150px;
+        }
+
+        .table2 {
+            border-collapse: collapse;
+            width: 400px;
+            table-layout: fixed;
+        }
+
+        th,
+        td {
+            border: 1px solid black;
+            text-align: center;
+            padding: 8px;
+        }
+
+        th {
+            width: 50px;
+            height: 30px;
+        }
+    </style>
+    <script>
+        window.onload = function () {
+            const manufacturer = document.getElementById('manufacturer');
+            const type = document.getElementById('type');
+            const minPrice = document.getElementById('minPrice');
+            const price = document.getElementById('price');
+
+            document.getElementById('add').onclick = function () {
+                if (!manufacturer.value) {
+                    alert('請填寫製造商');
+                } else if (!type.value) {
+                    alert('請填寫類別');
+                } else {
+                    addData(manufacturer.value, type.value, minPrice.value, price.value);
+                }
+            }
+            document.getElementById('clear').onclick = function () {
+                manufacturer.value = '';
+                type.value = '';
+                minPrice.value = '';
+                price.value = '';
+                const data = document.getElementById('data');
+                while (data.rows.length > 1) {
+                    data.deleteRow(1);
+                }
+            }
+
+            document.getElementById('advise').onclick = function () {
+                const selectRow = document.querySelector('input[name="index"]:checked');
+                if (!selectRow) {
+                    alert('請選擇要修改的資料');
+                    return;
+                }
+
+                if (!manufacturer.value) {
+                    alert('請填寫製造商')
+                } else if (!type.value) {
+                    alert('請填寫類別')
+                } else {
+                    const row = selectRow.parentNode.parentNode;
+                    row.cells[2].innerHTML = manufacturer.value;
+                    row.cells[3].innerHTML = type.value;
+                    row.cells[4].innerHTML = minPrice.value;
+                    row.cells[5].innerHTML = price.value;
+                }
+            }
+            function addData(manufacturerData, typeData, minPriceData, priceData) {
+                const data = document.getElementById('data');
+                const newRow = data.insertRow(data.rows.length);
+                
+                const radio = newRow.insertCell(0);
+                radio.innerHTML = '<input type="radio" name="index">';
+                radio.querySelector('input[type="radio"]').onclick = function () {
+                    manufacturer.value = manufacturerData;
+                    type.value = typeData;
+                    minPrice.value = minPriceData;
+                    price.value = priceData;
+                }
+
+                newRow.insertCell(1).innerHTML = data.rows.length - 1;
+                newRow.insertCell(2).innerHTML = manufacturerData;
+                newRow.insertCell(3).innerHTML = typeData;
+                newRow.insertCell(4).innerHTML = minPriceData;
+                newRow.insertCell(5).innerHTML = priceData;
+                newRow.insertCell(6).innerHTML = '<button onclick="deleteRow(this)" id="delete">刪除</button>';
+            };
+
+            deleteRow = function (e) {
+                e.parentNode.parentNode.remove();
+                reTable(data);
+            }
+
+            function reTable(data) {
+                const table = document.getElementById('data');
+                for (let i = 1; i < table.rows.length; i++) {
+                    table.rows[i].cells[1].innerHTML = i;
+                }
+            }
+        }
+    
+
+    </script>
+</head>
+
+<body>
+    <table class="table1">
+        <tr>
+            <td>製造商</td>
+            <td><input type="text" id="manufacturer"></td>
+            <td>類別</td>
+            <td> <input type="text" id="type"></td>
+        </tr>
+        <tr>
+            <td>底價</td>
+            <td><input type="text" id="minPrice"></td>
+            <td>售價</td>
+            <td><input type="text" id="price"></td>
+        </tr>
+        <tr>
+            <td colspan="4"><button id="add">新增</button><button id="advise">修改</button><button id="clear">清空</button>
+            </td>
+        </tr>
+    </table>
+    <br />
+    <table class="table2" id="data">
+        <tr>
+            <th>&nbsp;&nbsp;&nbsp;</th>
+            <th>序號</th>
+            <th>製造商</th>
+            <th>類別</th>
+            <th>底價</th>
+            <th>售價</th>
+            <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+        </tr>
+    </table>
+</body>
+
+</html>
