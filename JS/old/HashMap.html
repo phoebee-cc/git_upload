@@ -14,9 +14,9 @@
             const result = document.getElementById('result');
             const newKey = document.getElementById('inputKey');
             const newValue = document.getElementById('inputValue');
-
+            
             document.getElementById('putBtn').onclick = function () {
-                newKey.value.trim();//去除首尾空格
+                newKey.value.trim();
                 newValue.value.trim();
                 if (!newKey.value) {
                     alert('請輸入key');

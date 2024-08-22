@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        .left {
+            text-align: left;
+        }
+    </style>
+    <script type="text/javascript" src="HashMap.js"></script>
+    <script type="text/javaScript">
+        window.onload = function () {       
+            const map = new HashMap();   
+            const result = document.getElementById('result');
+            const newKey = document.getElementById('inputKey');
+            const newValue = document.getElementById('inputValue');
+            
+            document.getElementById('putBtn').onclick = function () {
+                newKey.value.trim();
+                newValue.value.trim();
+                if (!newKey.value) {
+                    alert('請輸入key');
+                    return;
+                }
+                if (map.contains(newKey.value)) {
+                    alert('Key 已存在');
+                    return;
+                } 
+                map.put(newKey.value,newValue.value);
+                printResult(newKey.value, newValue.value);
+            }
+                
+            document.getElementById('clearBtn').onclick = function () {
+                result.innerHTML = '';
+                map.clear();
+                newKey.value = '';
+                newValue.value = '';
+            }
+
+            function printResult(key, value) {
+            result.innerHTML += `${key}  :  ${map.get(key)} <br/>`;
+            }
+        }  
+    </script>
+
+</head>
+
+<body>
+    <span class="left">KEY&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+    <input type="text" id="inputKey" /><br />
+    <br />
+    <span class="left">VALUE</span>
+    <input type="text" id="inputValue" /><br />
+    <hr />
+    <button type="button" id="putBtn">PUT</button>&nbsp;&nbsp;&nbsp;
+    <button type="button" id="clearBtn">CLEAR</button>
+    <hr />
+    <span>【RESULT】</span><br />
+    <div id="result"></div>
+
+</body>
+
+</html>
