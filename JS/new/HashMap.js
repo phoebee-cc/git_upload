@@ -7,7 +7,7 @@ var HashMap = function () {
         },
         
         keys: function () {
-            Object.keys(map);
+            return Object.keys(map);
         },
         
         contains: function (newKey) {

@@ -66,8 +66,12 @@
                 }
             }
 
-            document.getElementById('advise').onclick = function () {
+            document.getElementById('modify').onclick = function () {
                 const selectRow = document.querySelector('input[name="index"]:checked');
+                if (!selectRow) {
+                    alert('請選擇要修改的資料');
+                    return;
+                }
                 if (!manufacturer.value.trim()) {
                     alert('請填寫製造商');
                     return;
@@ -84,6 +88,7 @@
                     alert('售價請輸入數字');
                     return;
                 }
+
                 const row = selectRow.parentNode.parentNode;//tr
                 row.cells[2].innerHTML = manufacturer.value;
                 row.cells[3].innerHTML = type.value;
@@ -100,10 +105,11 @@
                 radio.appendChild(radioBtn);
                 radio.querySelector('input[type="radio"]').onclick = function () {
                     const radioIndex = radioBtn.parentNode.parentNode.rowIndex;
-                    manufacturer.value = data.rows[radioIndex].cells[2].innerHTML;
-                    type.value = data.rows[radioIndex].cells[3].innerHTML;
-                    minPrice.value = data.rows[radioIndex].cells[4].innerHTML;
-                    price.value = data.rows[radioIndex].cells[5].innerHTML;
+                    const dataRows = data.rows[radioIndex]
+                    manufacturer.value = dataRows.cells[2].innerHTML;
+                    type.value = dataRows.cells[3].innerHTML;
+                    minPrice.value = dataRows.cells[4].innerHTML;
+                    price.value = dataRows.cells[5].innerHTML;
                 }
 
                 newRow.insertCell(1).innerHTML = data.rows.length - 1;
@@ -148,7 +154,7 @@
             <td><input type="txet" id="price"></td>
         </tr>
         <tr>
-            <td colspan="4"><button id="add">新增</button><button id="advise">修改</button><button id="clear">清空</button>
+            <td colspan="4"><button id="add">新增</button><button id="modify">修改</button><button id="clear">清空</button>
             </td>
         </tr>
     </table>
